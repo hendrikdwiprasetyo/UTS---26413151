@@ -1,0 +1,110 @@
+//nomor1
+
+vi nomor1.txt
+<wb:indicators xmlns:wb="http://www.worldbank.org" page="1" pages="1" per_page="50" total="1">
+<wb:indicator id="SI.POV.GINI">
+<wb:name>GINI index (World Bank estimate)</wb:name>
+<wb:unit/>
+<wb:source id="2">World Development Indicators</wb:source>
+<wb:sourceNote>
+Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution. A Lorenz curve plots the cumulative percentages of total income received against the cumulative number of recipients, starting with the poorest individual or household. The Gini index measures the area between the Lorenz curve and a hypothetical line of absolute equality, expressed as a percentage of the maximum area under the line. Thus a Gini index of 0 represents perfect equality, while an index of 100 implies perfect inequality.
+</wb:sourceNote>
+<wb:sourceOrganization>
+World Bank, Development Research Group. Data are based on primary household survey data obtained from government statistical agencies and World Bank country departments. For more information and methodology, please see PovcalNet (http://iresearch.worldbank.org/PovcalNet/index.htm).
+</wb:sourceOrganization>
+<wb:topics>
+<wb:topic id="11">Poverty</wb:topic>
+</wb:topics>
+</wb:indicator>
+</wb:indicators>
+
+bash sed -e 's/foo/bar/g' API_SI.POV.GINI_DS2_en_csv_v2.csv
+bash sed -e 's/foo/bar/g' Metadata_Country_API_SI.POV.GINI_DS2_en_csv_v2.csv
+
+vi nomor1.3.txt
+#!/bin/bash
+d=$1
+OUT=/tmp/spam.ip.$$
+HTTPDLOG="/www/$d/var/log/httpd/access.log"
+[ $# -eq 0 ] && { echo "Usage: $0 domain-name"; exit 999; }
+if [ -f $HTTPDLOG ];
+then
+        awk '{print}' $HTTPDLOG >$OUT
+        awk '{ print $1}' $OUT  |  sort -n | uniq -c | sort -n
+else
+        echo "$HTTPDLOG not found. Make sure domain exists and setup correctly."
+fi
+/bin/rm -f $OUT
+
+vi nomor1.4.txt
+perl -pe 's/foo/bar/g' nomor1.txt
+
+
+
+//nomor2
+
+vi nomor2.1.txt
+use LWP::UserAgent;
+
+my $ua = LWP::UserAgent->new;
+
+my $server_endpoint = "http://192.168.1.1:8000/service";
+
+# set custom HTTP request header fields
+my $req = HTTP::Request->new(GET => $server_endpoint);
+$req->header('content-type' => 'application/json');
+$req->header('x-auth-token' => 'kfksj48sdfj4jd9d');
+
+my $resp = $ua->request($req);
+if ($resp->is_success) {
+    my $message = $resp->decoded_content;
+    print "Received reply: $message\n";
+}
+else {
+    print "HTTP GET error code: ", $resp->code, "\n";
+    print "HTTP GET error message: ", $resp->message, "\n"
+
+vi nomor2.2.txt
+use LWP::UserAgent;
+
+my $ua = LWP::UserAgent->new;
+
+my $server_endpoint = "http://192.168.1.1:8000/service";
+
+
+my $req = HTTP::Request->new(POST => $server_endpoint);
+$req->header('content-type' => 'application/json');
+$req->header('x-auth-token' => 'kfksj48sdfj4jd9d');
+
+
+my $post_data = '{ "name": "Dan", "address": "NY" }';
+$req->content($post_data);
+
+my $resp = $ua->request($req);
+if ($resp->is_success) {
+    my $message = $resp->decoded_content;
+    print "Received reply: $message\n";
+}
+else {
+    print "HTTP POST error code: ", $resp->code, "\n";
+    print "HTTP POST error message: ", $resp->message, "\n";
+}
+
+vi 2.3.txt
+#!/bin/sh
+
+DIR=/cygdrive/c/Al/Reports
+
+FILE1=laporan`LHK-03 : Harga Produsen Komoditas Sayuran`/`nama kabupaten/kota`.`string +"%s"`
+FILE2=laporan`LHK-03 : Harga Produsen Komoditas Sayuran`/`Bawang Merah Kering`.`int +"%d"`
+FILE3=laporan`LHK-03 : Harga Produsen Komoditas Sayuran`/`Cabe Merah Besar`.`int +"%d"`
+FILE4=laporan`LHK-03 : Harga Produsen Komoditas Sayuran`/`Cabe Merah Keriting`.`int +"%d"`
+FILE5=laporan`LHK-03 : Harga Produsen Komoditas Sayuran`/`Cabe Rawit Merah`.`int +"%d"`
+
+
+LOGFILE=periode`oktober 2016`
+
+URL=http://https://aplikasi.pertanian.go.id/smshargakab/qrylapharprov.asp
+
+cd $DIR
+wget $URL -O $FILE1 -o $FILE2 -o  $FILE3 -o $FILE4 -o $FILE5 -o$LOGFILE
